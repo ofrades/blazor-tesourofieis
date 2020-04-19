@@ -1,7 +1,4 @@
----
-layout: default
-title: Ordo Missæ
----
+@page "/ordinario"
 
 <div class="col-2 desktop">
 	<nav id="toc" data-spy="affix" data-toggle="toc" class="toc-ordo"></nav>
@@ -304,19 +301,6 @@ Vos pedimos, Senhor, pelos méritos dos vossos Santos, cujas relíquias estão a
 
 <em>Nas Missas solenes, incensa-se o altar. O Sacerdote vai para o lado da Epístola, e lê o Intróito. Canto solene de entrada, o Intróito como que enuncia o tema geral da Missa ou solenidade do dia. Às primeiras palavras, todos se benzem, ao mesmo tempo que o celebrante.</em>
 
-<main class="col-12" id="introitusText"></main>
-<script id="introitus" type="text/x-custom-template">
-    <h4 class="text-center text-danger mt-2">${title}</h4>
-    <div class="row">
-		<div class="col-6 section-latin">
-			<p>${introitusLatin}</p>
-		</div>
-        <div class="col-6 section-vernacular">
-            <p>${introitusVernacular}</p>
-        </div>
-    </div>
-</script>
-
 <h3 id="item-1-4" class="text-center">Kyrie Eleison</h3>
 
 <em>Os Kyries, são nove clamores dirigidos à Santíssima trindade. O Sacerdote, no meio do altar, diz, alternadamente com os Acólitos:</em>
@@ -431,19 +415,6 @@ V. O Senhor esteja convosco.
 </div>
 </div>
 
-<main class="col-12" id="oratioText"></main>
-<script id="oratio" type="text/x-custom-template">
-    <h4 class="text-center text-danger mt-2">${title}</h4>
-    <div class="row">
-		<div class="col-6 section-latin">
-			<p>${oratioLatin}</p>
-		</div>
-        <div class="col-6 section-vernacular">
-            <p>${oratioVernacular}</p>
-        </div>
-    </div>
-</script>
-
 <div class="container-fluid">
 <div class="row">
 <div class="col-6 text-justify">
@@ -463,19 +434,6 @@ V. ...por todos os séculos dos séculos.
 
 <h3 id="item-1-7" class="text-center">Epístola do dia</h3>
 
-<main class="col-12" id="lectioText"></main>
-<script id="lectio" type="text/x-custom-template">
-    <h4 class="text-center text-danger mt-2">${title}</h4>
-    <div class="row">
-		<div class="col-6 section-latin">
-			<p>${lectioLatin}</p>
-		</div>
-        <div class="col-6 section-vernacular">
-            <p>${lectioVernacular}</p>
-        </div>
-    </div>
-</script>
-
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-6 text-justify">
@@ -490,19 +448,6 @@ V. ...por todos os séculos dos séculos.
 <h3 id="item-1-8" class="text-center">Gradual do dia</h3>
 
 <em>A oração curta de acção de graças, consiste geralmente de dois ou três versos retirados dos Salmos ou do Antigo Testamento.</em>
-
-<main class="col-12" id="gradualeText"></main>
-<script id="graduale" type="text/x-custom-template">
-    <h4 class="text-center text-danger mt-2">${title}</h4>
-	<div class="row">
-		<div class="col-6 section-latin">
-			<p>${gradualeLatin}</p>
-		</div>
-		<div class="col-6 section-vernacular">
-			<p>${gradualeVernacular}</p>
-		</div>
-	</div>
-</script>
 
 <em>No Tempo da Septuagésima, o Allelúja é substituído pelo Trato. No Tempo Pascal, omite-se o Gradual, e dizem-se dois Allelúja.</em>
 
@@ -560,20 +505,6 @@ V. Continuação <span class="text-danger">&#10016;</span> do santo Evangelho, s
 </div>
 </div>
 </div>
-
-<main class="col-12" id="evangeliumText"></main>
-<script id="evangelium" type="text/x-custom-template">
-    <h4 class="text-center text-danger mt-2">${title}</h4>
-	<div class="row">
-		<div class="col-6 section-latin">
-			<p>${evangeliumLatin}</p>
-		</div>
-		<div class="col-6 section-vernacular">
-			<p>${evangeliumVernacular}</p>
-		</div>
-	</div>
-</script>
-
 
 <div class="container-fluid">
 <div class="row">
@@ -686,19 +617,6 @@ V. Oremos.
 </div>
 
 <h3 id="item-2-2" class="text-center">Ofertório do dia</h3>
-
-<main class="col-12" id="offertoriumText"></main>
-<script id="offertorium" type="text/x-custom-template">
-    <h4 class="text-center text-danger mt-2">${title}</h4>
-	<div class="row">
-		<div class="col-6 section-latin">
-			<p>${offertoriumLatin}</p>
-		</div>
-		<div class="col-6 section-vernacular">
-			<p>${offertoriumVernacular}</p>
-		</div>
-	</div>
-</script>
 
 <h4 class="text-center">Oferecimento do pão:</h4>
 
@@ -920,19 +838,6 @@ V. Amen.
 
 <h3 id="item-2-3" class="text-center">Secreta do dia</h3>
 
-<main class="col-12" id="secretaText"></main>
-<script id="secreta" type="text/x-custom-template">
-    <h4 class="text-center text-danger mt-2">${title}</h4>
-	<div class="row">
-		<div class="col-6 section-latin">
-			<p>${secretaLatin}</p>
-		</div>
-		<div class="col-6 section-vernacular">
-			<p>${secretaVernacular}</p>
-		</div>
-	</div>
-</script>
-
 <div class="container-fluid">
 <div class="row">
 <div class="col-6 text-justify">
@@ -950,7 +855,7 @@ V. ...Por todos os séculos dos séculos.
 </div>
 </div>
 
-<h3 id="item-2-4" class="text-center">Canon Missæ</h2>
+<h3 id="item-2-4" class="text-center">Canon Missæ</h3>
 
 <em>O Cânon constitui a parte central da Missa. Com o Prefácio, começa a grande, a solene oração sacerdotal da Igreja e oblação propriamente dita do Sacrifício. Curto diálogo introdutório entre o Sacerdote e os fiéis desperta nas almas os sentimentos de acção de graças que convêm à celebração dos santos mystérios.</em>
 
@@ -996,19 +901,6 @@ V. Demos graças ao Senhor, Nosso Deus.
 </div>
 
 <h3 id="item-2-5" class="text-center">Prefácio do dia</h3>
-
-<main class="col-12" id="prefatioText"></main>
-<script id="prefatio" type="text/x-custom-template">
-    <h4 class="text-center text-danger mt-2">${title}</h4>
-	<div class="row">
-		<div class="col-6 section-latin">
-			<p>${prefatioLatin}</p>
-		</div>
-		<div class="col-6 section-vernacular">
-			<p>${prefatioVernacular}</p>
-		</div>
-	</div>
-</script>
 
 <h3 id="item-2-6" class="text-center">Sanctus</h3>
 
@@ -1651,19 +1543,6 @@ Senhor, que o vosso Corpo, que recebi, e o vosso sangue, que bebi, se unam intim
 
 <em>O Sacerdote passa para o lado direito do altar, e recita a antífona da Comunhão.</em>
 
-<main class="col-12" id="communioText"></main>
-<script id="communio" type="text/x-custom-template">
-    <h4 class="text-center text-danger mt-2">${title}</h4>
-	<div class="row">
-		<div class="col-6 section-latin">
-			<p>${communioLatin}</p>
-		</div>
-		<div class="col-6 section-vernacular">
-			<p>${communioVernacular}</p>
-		</div>
-	</div>
-</script>
-
 <div class="container-fluid">
 <div class="row">
 <div class="col-6 text-justify">
@@ -1682,19 +1561,6 @@ V. O Senhor esteja convosco.
 </div>
 
 <h3 id="item-2-16" class="text-center">Postcomúnio do dia</h3>
-
-<main class="col-12" id="postcommunioText"></main>
-<script id="postcommunio" type="text/x-custom-template">
-    <h4 class="text-center text-danger mt-2">${title}</h4>
-	<div class="row">
-		<div class="col-6 section-latin">
-			<p>${postcommunioLatin}</p>
-		</div>
-		<div class="col-6 section-vernacular">
-			<p>${postcommunioVernacular}</p>
-		</div>
-	</div>
-</script>
 
 <h3 id="item-2-17" class="text-center">Despedida e Bênção</h3>
 
@@ -1855,4 +1721,5 @@ No princípio existia o Verbo, e o Verbo estava com Deus, e o Verbo era Deus. Es
 
 <p class="text-center"><a href="/oracoesleoninas">Ver <span class="iconify" data-icon="ant-design:link-outlined" data-inline="false"></span></a></p>
 
+</div>
 </div>

@@ -1,0 +1,68 @@
+@page "/missa"
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Text.RegularExpressions
+@using blazor_tesourofieis
+@using System.Text.Json
+@inject HttpClient Http
+@inject State State
+
+<div class="container-fluid">
+
+@foreach (var item in Masses) {
+<main class="col-12">
+    <div id="loaded-content">
+        <div class="text-center">
+            @if(Masses.Count == 0){
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            }
+            <h1 class="display-8">@item.Info.Title</h1>
+                <p class="text-center">
+                    <span class="color-marker color-marker-@item.Info.Colors.First()"></span>
+                    <span> | @item.Info.AdditionalInfo.ElementAt(0)</span>
+                </p>
+            <p>@item.Info.Description</p>
+    
+            @foreach (var item2 in item.Sections){
+                int indexVernacular = 0;
+                int indexLatin = 0;
+                <div class="row">
+                    <div class="col-sm-6 section-vernacular">
+                        <h2 class="text-center">@item2.Label</h2>
+                        @while(indexVernacular < @item2.Body.Count()){
+                            indexVernacular++;
+                            <p>@((MarkupString)item2.Body.ElementAt(indexVernacular-1).ElementAt(0))</p>
+                        }
+                    </div>
+                    <div class="col-sm-6 section-latin">
+                        <h2 class="text-center">@item2.Id</h2>
+                        @while(indexLatin < @item2.Body.Count()){
+                            indexLatin++;
+                            <p>@((MarkupString)item2.Body.ElementAt(indexLatin-1).ElementAt(1))</p>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</main>
+}
+</div>
+
+@code{
+    public List<Mass> Masses { get; set; } = new List<Mass>();
+    public DateTime today = DateTime.Now;
+    protected override async Task OnInitializedAsync() {
+        string jsonString;
+        Masses = await Http.GetFromJsonAsync<List<Mass>>($"date/{today.ToString("yyyy-MM-dd")}.json");
+        jsonString = JsonSerializer.Serialize(Masses);
+        var br = Regex.Replace(jsonString, @"(\*)([^\*]+)(\*)",
+            m => string.Format("<br />˙<em>{1}</em><br />",
+                m.Groups[1].Value,
+                m.Groups[2].Value,
+                m.Groups[3].Value));
+        Masses = JsonSerializer.Deserialize<List<Mass>>(br);
+    }
+}

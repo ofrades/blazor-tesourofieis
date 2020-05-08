@@ -1,3 +1,6 @@
 .vscode/launch.json
 .vscode/tasks.json
 Properties/launchSettings.json
+bin
+obj
+settings.json

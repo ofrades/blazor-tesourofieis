@@ -1,15 +1,11 @@
 @page "/adoracao"
 
-<div class="col-2 desktop">
-  <nav id="toc" data-spy="affix" data-toggle="toc" class="toc-bencao"></nav>
-</div>
-
-<div class="col-md-10">
+<div class="col-md-12">
   <h1 class="text-center">Bênção do Santíssimo Sacramento</h1>
 
   <h2 class="text-center">O Salutáris Hóstia</h2>
 
-  {% include adoracao/osalutaris.html %}
+  <Osalutaris />
 
   <h4 class="text-center">Acto de Adoração</h4>
 
@@ -37,19 +33,19 @@
 
   <h4 class="text-center">Adoro Te Devote</h4>
 
-  {% include adoracao/adorotedevote.html %}
+  <Adorotedevote />
 
   <h4 class="text-center">Ave Verum Corpus</h4>
 
-  {% include adoracao/aveverum.html %}
+  <Aveverum />
 
   <h4 class="text-center">Ecce Panis Angelorum</h4>
 
-  {% include adoracao/eccepanisangelorum.html %}
+  <Eccepanisangelorum />
 
   <h4 class="text-center">Parce Domine</h4>
 
-  {% include adoracao/parcedomine.html %}
+  <Parcedomine />
 
   <h4 class="text-center">Cor jesu sacratissimum</h4>
 
@@ -74,7 +70,7 @@
 
   <h4 class="text-center">Tantum Ergo</h4>
 
-  {% include adoracao/tantumergo.html %}
+  <Tantumergo />
 
   <div class="container-fluid">
     <div class="row">

@@ -1,9 +1,76 @@
 ﻿@inherits LayoutComponentBase
+@inject IStyled Styled
+@inject IBootstrapCss BootstrapCss
+@inject ResizeListener listener
+@implements IDisposable
 
-<Navbartop />
+<Styled>
+    body {
+        background-color: [colors.background-color] !important;
+        color: [colors.text-color] !important;
+    }
+    .card {
+        background-color: [colors.background-color] !important;
+        color: [colors.text-color] !important;
+    }
+    .list-group-item {
+        background-color: [colors.background-color] !important;
+        color: [colors.text-color] !important;
+    }
+</Styled>
+
+@if (IsSmallMedia) {
+    <Navbarbottom />
+} else {
+    <Navbartop />
+}
 
 <div class="main">
-    <div class="content px-4">
+    <div class="content p-4">
         @Body
     </div>
 </div>
+
+<Footer />
+
+@code {
+    BrowserWindowSize browser = new BrowserWindowSize();
+		bool IsSmallMedia = false;
+		protected async override Task OnInitializedAsync()
+		{
+			await BootstrapCss.SetBootstrapCss("4.3.1");
+			//Setup default theme (light)
+			Styled.SetThemeValue("colors.background-color", "#eee");
+			Styled.SetThemeValue("colors.text-color", "#222");
+		}
+		protected override void OnAfterRender(bool firstRender)
+		{
+			if (firstRender)
+			{
+				// Subscribe to the OnResized event. This will do work when the browser is resized.
+				listener.OnResized += WindowResized;
+			}
+		}
+
+		void IDisposable.Dispose()
+		{
+			// Always use IDisposable in your component to unsubscribe from the event.
+			// Be a good citizen and leave things how you found them. 
+			// This way event handlers aren't called when nobody is listening.
+			listener.OnResized -= WindowResized;
+		}
+
+		// This method will be called when the window resizes.
+		// It is ONLY called when the user stops dragging the window's edge. (It is already throttled to protect your app from perf. nightmares)
+		async void WindowResized(object _, BrowserWindowSize window)
+		{
+			// Get the browsers's width / height
+			browser = window;
+
+			// Check a media query to see if it was matched. We can do this at any time, but it's best to check on each resize
+			IsSmallMedia = await listener.MatchMedia(Breakpoints.SmallDown);
+
+			// We're outside of the component's lifecycle, be sure to let it know it has to re-render.
+			StateHasChanged();
+		}
+}

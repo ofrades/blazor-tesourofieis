@@ -1,0 +1,59 @@
+@inject State State
+@inject IStyled Styled
+
+<Styled>
+	#sidebarmissa{
+		top: 0;
+		bottom: 0;
+		position: fixed;
+  		margin-top: 75px;
+  		left: 0;
+		width: 15%;
+  		height: calc(100% - 75px);
+  		z-index: 0;
+  		transition: all 0.2s;
+  		overflow-y: scroll;
+	}
+</Styled>
+
+<BSCol XS="2" id="sidebarmissa">
+<BSListGroup ListGroupType="ListGroupType.Link">
+
+@foreach (var item in State.deserializer.Keys){
+	State.Calendar = State.deserializer[item];
+	@if(State.Calendar.Celebration.Any()){
+		@foreach (var item2 in State.Calendar.Celebration){
+			@if(item2.Title.Any()){
+				<BSListGroupItem class="@(State.today == item ? "active" : "")" id="@item" href="#" @onclick="(() => State.GetToday(item))"><BSListGroupItemHeading><small>@item2.Title</small></BSListGroupItemHeading></BSListGroupItem>
+			}
+		}
+	} else if(State.Calendar.Commemoration.Any()){
+		@foreach (var item2 in State.Calendar.Commemoration){
+			@if(item2.Title.Any()){
+				<BSListGroupItem class="@(State.today == item ? "active" : "")" id="@item" href="#" @onclick="(() => State.GetToday(item))"><BSListGroupItemHeading><small>@item2.Title</small></BSListGroupItemHeading></BSListGroupItem>
+			}
+		}
+	} else if(State.Calendar.Tempora.Any()){
+		@foreach (var item2 in State.Calendar.Tempora){
+			@if(item2.Title.Any()){
+				<BSListGroupItem class="@(State.today == item ? "active" : "")" id="@item" href="#" @onclick="(() => State.GetToday(item))"><BSListGroupItemHeading><small>@item2.Title</small></BSListGroupItemHeading></BSListGroupItem>
+			}
+		}
+	} else {
+		<BSListGroupItem class="@(State.today == item ? "active" : "")" id="@item" href="#" @onclick="(() => State.GetToday(item))"><BSListGroupItemHeading><small>@item</small></BSListGroupItemHeading></BSListGroupItem>
+	}
+}
+
+</BSListGroup>
+</BSCol>
+@code{
+	protected override async Task OnInitializedAsync()
+	{
+		await State.GetCalendar();
+		State.OnChange += StateHasChanged;
+	}
+	public void Dispose()
+	{
+		State.OnChange -= StateHasChanged;
+	}
+}

@@ -1,8 +1,9 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Blazorise;
+using Blazorise.Bootstrap;
 using BlazorPro.BlazorSize;
-using BlazorStrap;
 using BlazorStyled;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,10 @@ namespace blazor_tesourofieis {
             builder.Services.AddScoped<State>();
 
             builder.Services.AddBlazorStyled();
-            builder.Services.AddBootstrapCss();
+            builder.Services.AddBlazorise(options => {
+                    options.ChangeTextOnKeyPress = true;
+                })
+                .AddBootstrapProviders();
             builder.Services.AddResizeListener(options => {
                 options.ReportRate = 300;
                 options.EnableLogging = true;
@@ -24,7 +28,11 @@ namespace blazor_tesourofieis {
 
             builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            await builder.Build().RunAsync();
+            var host = builder.Build();
+
+            host.Services.UseBootstrapProviders();
+
+            await host.RunAsync();
         }
     }
 }

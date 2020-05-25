@@ -1,5 +1,5 @@
 var blazorHelpers = blazorHelpers || {};
-let today = new Date().toISOString().slice(0, 10);
+let today = new Date().toISOString().split("T")[0];
 
 blazorHelpers.scrollToFragment = (today) => {
   var element = document.getElementById(today);

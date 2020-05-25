@@ -37,21 +37,24 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <script src="_content/BlazorStrap/blazorStrap.js"></script>
+
+    <link href="_content/Blazorise/blazorise.css" rel="stylesheet" />
+    <link
+      href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css"
+      rel="stylesheet"
+    />
     <script src="_content/BlazorPro.BlazorSize/blazorSize.min.js"></script>
 
     <title>Tesouro dos Fiéis</title>
   </head>
 
   <body>
-    <app>Loading...</app>
+    <app><span class="spinner-border text-center mt-3"></span></app>
 
     <script src="_framework/blazor.webassembly.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@1.0.3/dist/iconify.min.js"></script>
-    <!-- <script src="./app.js"></script> -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.js" ></script> -->
-    <!-- inside of body section and after the <app> tag  -->
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -67,6 +70,13 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <link
+      href="_content/Blazorise.Sidebar/blazorise.sidebar.css"
+      rel="stylesheet"
+    />
+
+    <script src="_content/Blazorise/blazorise.js"></script>
+    <script src="_content/Blazorise.Bootstrap/blazorise.bootstrap.js"></script>
 
     <script>
       navigator.serviceWorker.register("service-worker.js");

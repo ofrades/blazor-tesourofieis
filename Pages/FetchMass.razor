@@ -1,0 +1,68 @@
+@inject State State
+
+
+	@if(State.Mass.Count == 0){
+		<Column>
+			<span class="spinner-border text-center mt-3"></span>
+		</Column>
+	}
+	<h1 class="display-8 text-center">@State.Title</h1>
+		<p class="text-center">
+			<span class="color-marker color-marker-@State.Color"></span>
+			<span> | @State.AdditionalInfo</span>
+		</p>
+	<p>@State.Description</p>
+	@if(State.Body.Count > 10){
+		@foreach (var item2 in State.Sections){
+			int indexVernacular = 0;
+			int indexLatin = 0;
+			int indexOddVernacular = 0;
+			int indexOddLatin = 1;
+			<Row>
+				<Column ColumnSize="ColumnSize.Is6">
+					<h2 class="text-center">@item2.Label</h2>
+					@while(indexVernacular < @item2.Body.Count()){
+						<p>@((MarkupString)item2.Body[indexVernacular][indexOddVernacular])</p>
+						if(item2.Body[indexVernacular].Count() > 2){
+							indexOddVernacular = indexOddVernacular + 2;
+							<p>@((MarkupString)item2.Body[indexVernacular][indexOddVernacular])</p>
+						}
+						indexVernacular++;
+					}
+				</Column>
+				<Column ColumnSize="ColumnSize.Is6">
+					<h2 class="text-center">@item2.Id</h2>
+					@while(indexLatin < @item2.Body.Count()){
+						<p>@((MarkupString)item2.Body[indexLatin][indexOddLatin])</p>
+						if(item2.Body[indexLatin].Count() > 2){
+							indexOddLatin = indexOddLatin + 2;
+							<p>@((MarkupString)item2.Body[indexLatin][indexOddLatin])</p>
+						}
+						indexLatin++;
+					}
+				</Column>
+			</Row>
+		}
+	} else {
+		<Introitus />
+		<Oratio />
+		<Lectio />
+		<Graduale />
+		<Evangelium />
+		<Offertorium />
+		<Secreta />
+		<Prefatio />
+		<Communio />
+		<Postcommunio />
+	}
+
+
+@code{
+	protected override async Task OnInitializedAsync() {
+		await State.GetToday();
+		State.OnChange += StateHasChanged;
+	}
+	public void Dispose() {
+		State.OnChange -= StateHasChanged;
+	}
+}

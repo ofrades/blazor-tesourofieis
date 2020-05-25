@@ -1,5 +1,7 @@
 @inject State State
 @inject IStyled Styled
+@using Blazorise.Sidebar
+
 
 <Styled>
 	#sidebarmissa{
@@ -16,44 +18,75 @@
 	}
 </Styled>
 
-<BSCol XS="2" id="sidebarmissa">
-<BSListGroup ListGroupType="ListGroupType.Link">
+<Sidebar @ref="sidebar">
+	<SidebarContent>
+		<SidebarNavigation>
 
-@foreach (var item in State.deserializer.Keys){
-	State.Calendar = State.deserializer[item];
+@if(State.deserializer.Keys == null){
+	<span class="spinner-border text-center mt-3"></span>
+} else {
+
+@foreach (var day in State.deserializer.Keys){
+	State.Calendar = State.deserializer[day];
 	@if(State.Calendar.Celebration.Any()){
-		@foreach (var item2 in State.Calendar.Celebration){
-			@if(item2.Title.Any()){
-				<BSListGroupItem class="@(State.today == item ? "active" : "")" id="@item" href="#" @onclick="(() => State.GetToday(item))"><BSListGroupItemHeading><small>@item2.Title</small></BSListGroupItemHeading></BSListGroupItem>
-			}
+		@foreach (var item in State.Calendar.Celebration){
+			<SidebarItem>
+				<SidebarLink class="@(State.today == day ? "active bg-danger" : "")"
+							id="@day" href="#"
+							@onclick="(() => State.GetToday(day))">
+					<p>@item.Title</p>
+					@if (State.Calendar.Commemoration.Any()){
+						<small>@day</small>
+						<small>@State.deserializer[day].Commemoration.Select(c => c.Title).FirstOrDefault()</small>
+					}
+				</SidebarLink>
+			</SidebarItem>
 		}
-	} else if(State.Calendar.Commemoration.Any()){
-		@foreach (var item2 in State.Calendar.Commemoration){
-			@if(item2.Title.Any()){
-				<BSListGroupItem class="@(State.today == item ? "active" : "")" id="@item" href="#" @onclick="(() => State.GetToday(item))"><BSListGroupItemHeading><small>@item2.Title</small></BSListGroupItemHeading></BSListGroupItem>
-			}
-		}
-	} else if(State.Calendar.Tempora.Any()){
-		@foreach (var item2 in State.Calendar.Tempora){
-			@if(item2.Title.Any()){
-				<BSListGroupItem class="@(State.today == item ? "active" : "")" id="@item" href="#" @onclick="(() => State.GetToday(item))"><BSListGroupItemHeading><small>@item2.Title</small></BSListGroupItemHeading></BSListGroupItem>
-			}
+	} else if (State.Calendar.Tempora.Any()){
+		@foreach (var item in State.Calendar.Tempora){
+			<SidebarItem>
+				<SidebarLink class="@(State.today == day ? "active bg-danger" : "")"
+							id="@day" href="#"
+							@onclick="(() => State.GetToday(day))">
+					<p>@item.Title</p>
+					@if (State.Calendar.Commemoration.Any()){
+						<small>@day</small>
+						<small>@State.deserializer[day].Commemoration.Select(c => c.Title).FirstOrDefault()</small>
+					}
+				</SidebarLink>
+			</SidebarItem>
 		}
 	} else {
-		<BSListGroupItem class="@(State.today == item ? "active" : "")" id="@item" href="#" @onclick="(() => State.GetToday(item))"><BSListGroupItemHeading><small>@item</small></BSListGroupItemHeading></BSListGroupItem>
+		<SidebarItem>
+			<SidebarLink class="@(State.today == day ? "active bg-danger" : "")"
+						id="@day" href="#"
+						@onclick="(() => State.GetToday(day))">
+				<p>Feria</p>
+				<small>@day</small>
+	
+			</SidebarLink>
+		</SidebarItem>
 	}
 }
-
-</BSListGroup>
-</BSCol>
+}
+		</SidebarNavigation>
+	</SidebarContent>
+</Sidebar>
 @code{
-	protected override async Task OnInitializedAsync()
-	{
-		await State.GetCalendar();
+	Sidebar sidebar;
+	void ToggleSidebar() {
+		sidebar.Toggle();
+	}
+
+	protected override void OnInitialized() {
 		State.OnChange += StateHasChanged;
 	}
-	public void Dispose()
-	{
+	protected override async Task OnAfterRenderAsync(bool firstrender) {
+		if (firstrender) {
+			await State.Focus();
+		}
+	}
+	public void Dispose() {
 		State.OnChange -= StateHasChanged;
 	}
 }

@@ -1,4 +1,5 @@
 @page "/"
+@inject State State
 
   <div class="row justify-content-md-center">
     <div class="cover-container mx-auto text-center">
@@ -9,7 +10,9 @@
       </main>
     </div>
   </div>
-
+<h1 class="text-center">Hoje: <strong>@State.Title</strong></h1>
+<Introitus />
+<Lectio />
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner shadow rounded">
     <div class="carousel-item active">
@@ -193,16 +196,6 @@
   </div>
 
 </div>
-  <div id="snackbar">
-    <div class="alert alert-dark shadow p-3 text-center" id="reload">
-      <div>
-        <img src="img/favicon.svg" width="30px" alt="Logo">
-      </div>
-      <a class="alert-link">
-        Existem novos conteúdos, clique aqui para actualizar.
-      </a>
-    </div>
-  </div>
 
   <hr>
   <div class="pt-4 my-md-3 pt-md-3">
@@ -213,5 +206,14 @@
       </div>
     </div>
   </div>
-
   
+@code{
+  protected override async Task OnInitializedAsync() {
+    await State.GetMass(State.today);
+    State.OnChange += StateHasChanged;
+  }
+  public void Dispose() {
+    State.OnChange -= StateHasChanged;
+  }
+}
+

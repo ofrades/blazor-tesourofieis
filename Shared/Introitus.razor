@@ -1,0 +1,35 @@
+@inject State State
+
+@if(State.IntroitusBody == null){
+    <Column ColumnSize="ColumnSize.Is12">
+        <span class="spinner-border text-center mt-3"></span>
+    </Column>
+} else {
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6">
+            <h2 class="text-center">@State.IntroitusLabel</h2>
+            @foreach(var item in State.IntroitusBody){
+    	        <p>@((MarkupString)item.FirstOrDefault())</p>
+			}
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6">
+            <h2 class="text-center">@State.IntroitusId</h2>
+            @foreach(var item in State.IntroitusBody){
+    	        <p>@((MarkupString)item.LastOrDefault())</p>
+			}
+        </Column>
+    </Row>
+} 
+
+@code{
+	protected override async Task OnInitializedAsync() {
+		await State.GetTodayComponents("introitus");
+		State.OnChange += StateHasChanged;
+	}
+	protected override void OnParametersSet() {
+		State.OnChange += StateHasChanged;
+	}
+	public void Dispose() {
+		State.OnChange -= StateHasChanged;
+	}
+}

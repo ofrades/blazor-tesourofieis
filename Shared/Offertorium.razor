@@ -1,0 +1,31 @@
+@inject State State
+
+@if(State.OffertoriumBody == null){
+    <Column ColumnSize="ColumnSize.Is12">
+        <span class="spinner-border text-center mt-3"></span>
+    </Column>
+} else {
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6">
+            <h2 class="text-center">@State.OffertoriumLabel</h2>
+			@foreach(var item in State.OffertoriumBody){
+    	        <p>@((MarkupString)item.FirstOrDefault())</p>
+			}
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6">
+            <h2 class="text-center">@State.OffertoriumId</h2>
+			@foreach(var item in State.OffertoriumBody){
+    	        <p>@((MarkupString)item.LastOrDefault())</p>
+			}
+        </Column>
+    </Row>
+}
+@code{
+	protected override async Task OnInitializedAsync() {
+		await State.GetTodayComponents("offertorium");
+		State.OnChange += StateHasChanged;
+	}
+	public void Dispose() {
+		State.OnChange -= StateHasChanged;
+	}
+}

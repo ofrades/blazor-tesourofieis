@@ -1,64 +1,22 @@
 @page "/missa"
 @inject State State
 
-<BSRow>
-    
-    <SideBar />
-    
-    @foreach (var item in State.Mass) {
-        <BSCol XS="10" XSOffset="2">
-        @if(State.Mass.Count == 0){
-            <BSCol class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </BSCol>
-        }
-        @if(@item.Info.Title != null){
-            <h1 class="display-8 text-center">@item.Info.Title</h1>
-        } else {
-            <h1 class="display-8 text-center">@item.Info.Tempora</h1>
-        }
-        @if(item.Info.AdditionalInfo.Any()){
-            <p class="text-center">
-                <span class="color-marker color-marker-@item.Info.Colors.First()"></span>
-                <span> | @item.Info.AdditionalInfo.FirstOrDefault()</span>
-            </p>
-        }
-        <p>@item.Info.Description</p>
-    
-        @foreach (var item2 in item.Sections){
-            int indexVernacular = 0;
-            int indexLatin = 0;
-            <BSRow>
-                <BSCol SM="6">
-                    <h2 class="text-center">@item2.Label</h2>
-                    @while(indexVernacular < @item2.Body.Count()){
-                        indexVernacular++;
-                        <p>@((MarkupString)item2.Body.ElementAt(indexVernacular-1).ElementAt(0))</p>
-                    }
-                </BSCol>
-                <BSCol SM="6">
-                    <h2 class="text-center">@item2.Id</h2>
-                    @while(indexLatin < @item2.Body.Count()){
-                        indexLatin++;
-                        <p>@((MarkupString)item2.Body.ElementAt(indexLatin-1).ElementAt(1))</p>
-                    }
-                </BSCol>
-            </BSRow>
+<Row>
+	@if(State.SidebarIsOpen){
+    	<SideBar />
+	}
 
-        }
-        </BSCol>
-    }
-</BSRow>
+	<Column ColumnSize="ColumnSize.Is10" Offset="Is2.WithOffset">
+		<FetchMass />
+	</Column>
+</Row>
 
 @code{
-    protected override async Task OnInitializedAsync()
-		{
-			await State.GetToday(State.today);
-			State.OnChange += StateHasChanged;
-		}
-		public void Dispose()
-		{
-			State.OnChange -= StateHasChanged;
-		}
-
+	protected override async Task OnInitializedAsync() {
+		await State.GetToday();
+		State.OnChange += StateHasChanged;
+	}
+	public void Dispose() {
+		State.OnChange -= StateHasChanged;
+	}
 }

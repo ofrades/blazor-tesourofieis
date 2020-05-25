@@ -1,0 +1,31 @@
+@inject State State
+
+@if(State.EvangeliumBody == null){
+    <Column ColumnSize="ColumnSize.Is12">
+        <span class="spinner-border text-center mt-3"></span>
+    </Column>
+} else {
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6">
+            <h2 class="text-center">@State.EvangeliumLabel</h2>
+            @foreach(var item in State.EvangeliumBody){
+    	        <p>@((MarkupString)item.FirstOrDefault())</p>
+			}
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6">
+            <h2 class="text-center">@State.EvangeliumId</h2>
+            @foreach(var item in State.EvangeliumBody){
+    	        <p>@((MarkupString)item.LastOrDefault())</p>
+			}
+        </Column>
+    </Row>
+}
+@code{
+    protected override async Task OnInitializedAsync() {
+        await State.GetTodayComponents("evangelium");
+        State.OnChange += StateHasChanged;
+    }
+    public void Dispose() {
+        State.OnChange -= StateHasChanged;
+    }
+}

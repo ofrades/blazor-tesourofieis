@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace blazor_tesourofieis {
@@ -34,7 +34,7 @@ namespace blazor_tesourofieis {
 		public List<object> Supplements { get; set; }
 
 		[JsonPropertyName("tempora")]
-		public object Tempora { get; set; }
+		public string Tempora { get; set; }
 
 		[JsonPropertyName("title")]
 		public string Title { get; set; }

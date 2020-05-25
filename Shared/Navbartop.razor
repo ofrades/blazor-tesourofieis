@@ -1,98 +1,97 @@
-<BSNavbar IsExpand="true" IsDark="false" Color="Color.Danger">
+@inject State State
+@inject NavigationManager navigation
 
-      <BSNavbarBrand>
-        <BSNavLink Href="/">
-          <img src="../img/faviconWhite.svg" width="30px" alt="logo">
-        </BSNavLink>
-      </BSNavbarBrand>
-      
-  <BSNavbarToggler @onclick="onclick" />
-    <BSNav Class="mx-auto" IsNavbar="true">
+<Bar Breakpoint="Breakpoint.Desktop" Background="Background.Danger">
 
-    <BSCollapse isOpen="@IsOpen" IsNavbar="true" IsOpenChanged="OpenChanged">
-      <BSNavItem>
-        <BSNavLink Href="/missa">Santa Missa Diária</BSNavLink>
-      </BSNavItem>
+@if(location.Contains("/missa")){
+  <BarBrand>
+    <Button @onclick="(() => State.ToggleSidebar())">
+      @(State.SidebarIsOpen ? "<" : ">")
+      <span class="iconify" data-icon="fa:calendar-o" data-inline="false"></span>
+    </Button>
+  </BarBrand>
+}
+
+<BarBrand>
+  <BarLink To="/">
+    <img src="../img/faviconWhite.svg" width="30px" alt="logo">
+  </BarLink>
+</BarBrand>
+
+
+<BarToggler>
+</BarToggler>
     
-      <BSNavItem IsDropdown="true">
-        <BSDropdownToggle Color="Color.Light">Devocionário</BSDropdownToggle>
-        <BSDropdownMenu>                        
-          <BSDropdownItem Href="salterio">Saltério</BSDropdownItem>
-          <BSDropdownItem Href="oracaomanha">Oração da Manhã</BSDropdownItem>
-          <BSDropdownItem Href="angelus">Angelus</BSDropdownItem>
-          <BSDropdownItem Href="oracaonoite">Oração da Noite</BSDropdownItem>
-          <BSDropdownItem Href="rosario">Santo Rosário</BSDropdownItem>
-          <BSDropdownItem Href="oficio">Pequeno Ofício de Nossa Senhora</BSDropdownItem>
-          <BSDropdownItem Href="antifonas">Antífonas de Nossa Senhora</BSDropdownItem>
-          <BSDropdownItem Href="adoracao">Bênção do Santíssimo Sacramento</BSDropdownItem>
-        </BSDropdownMenu>
-      </BSNavItem>
-
-      <BSNavItem IsDropdown="true">
-        <BSDropdownToggle Color="Color.Light">Missal Romano</BSDropdownToggle>
-          <BSDropdownMenu>
-            <BSDropdownItem Href="/missa">Santa Missa Diária</BSDropdownItem>
-            <BSDropdownItem Href="ordinariomissa">Ordo Missæ</BSDropdownItem>
-            <BSDropdownItem Href="oracaoantescomunhao">Oração Antes da Comunhão</BSDropdownItem>
-            <BSDropdownItem Href="oracaodepoiscomunhao">Oração Depois da Comunhão</BSDropdownItem>
-            <BSDropdownItem Href="oracoesleoninas">Orações Leoninas</BSDropdownItem>
-          </BSDropdownMenu>
-      </BSNavItem>
-
-      <BSNavItem IsDropdown="true">
-        <BSDropdownToggle Color="Color.Light">Ritual Romano</BSDropdownToggle>
-        <BSDropdownMenu>                        
-          <BSDropdownItem Href="baptismo">Baptismo</BSDropdownItem>
-          <BSDropdownItem Href="confirmacao">Confirmação</BSDropdownItem>
-          <BSDropdownItem Href="matrimonio">Matrimónio</BSDropdownItem>
-          <BSDropdownItem Href="extremauncao">Extrema-unção</BSDropdownItem>
-          <BSDropdownItem Href="requiem">Requiem</BSDropdownItem>
-          <BSDropdownItem Href="penitencia">Penitência</BSDropdownItem>
-        </BSDropdownMenu>
-      </BSNavItem>
-
-      <BSNavItem>
-        <BSNavLink Href="verdadesfe">Verdades de Fé</BSNavLink>
-      </BSNavItem>
-      <BSNavItem>
-        <BSNavLink Href="catecismo">Catecismo</BSNavLink>
-      </BSNavItem>
-      @* <ul class="navbar-nav flex-row">
-        <li class="nav-item"><a class="navbar-brand nav-link text-white" title="GitHub" href="https://www.github.com/ofrades/tesourofieis/blob/master/{{ page.path }}"><span class="iconify" data-icon="fa:pencil" data-inline="false"></span></a></li>
-    
-        <li class="nav-item"><a class="navbar-brand nav-link text-white" title="Email" href="mailto:info@tesourofieis.com"><span class="iconify" data-icon="fa:envelope" data-inline="false"></span></a></li>
-    
-        <li class="nav-item"><a class="navbar-brand nav-link text-white" title="Facebook" target="facebook"
-        href="https://facebook.com/tesourofieis"><span class="iconify" data-icon="fa-brands:facebook-f" data-inline="false"></span></a></li>
-    
-        <li class="nav-item"><a class="navbar-brand nav-link text-white" title="Donativos" target="buymeacoffee" href="https://www.buymeacoffee.com/SP41OgGsM"><span class="iconify" data-icon="fa:coffee" data-inline="false"></span></a></li>
-      </ul> *@
-    </BSCollapse>
-  </BSNav>
+<BarMenu>
+  <BarStart class="mx-auto">
+    <BarItem>
+      <BarLink To="/missa">Santa Missa Diária</BarLink>
+    </BarItem>
+    <BarItem>
+      <BarDropdown>
+        <BarDropdownToggle>Devocionário</BarDropdownToggle>
+        <BarDropdownMenu>
+          <BarDropdownItem To="salterio">Saltério</BarDropdownItem>
+          <BarDropdownItem To="oracaomanha">Oração da Manhã</BarDropdownItem>
+          <BarDropdownItem To="angelus">Angelus</BarDropdownItem>
+          <BarDropdownItem To="oracaonoite">Oração da Noite</BarDropdownItem>
+          <BarDropdownItem To="rosario">Santo Rosário</BarDropdownItem>
+          <BarDropdownItem To="oficio">Pequeno Ofício de Nossa Senhora</BarDropdownItem>
+          <BarDropdownItem To="antifonas">Antífonas de Nossa Senhora</BarDropdownItem>
+          <BarDropdownItem To="adoracao">Bênção do Santíssimo Sacramento</BarDropdownItem>
+        </BarDropdownMenu>
+      </BarDropdown>
+    </BarItem>
+    <BarItem>
+      <BarDropdown>
+        <BarDropdownToggle>Missal Romano</BarDropdownToggle>
+        <BarDropdownMenu>
+          <BarDropdownItem To="/missa">Santa Missa Diária</BarDropdownItem>
+          <BarDropdownItem To="ordinariomissa">Ordo Missæ</BarDropdownItem>
+          <BarDropdownItem To="oracaoantescomunhao">Oração Antes da Comunhão</BarDropdownItem>
+          <BarDropdownItem To="oracaodepoiscomunhao">Oração Depois da Comunhão</BarDropdownItem>
+          <BarDropdownItem To="oracoesleoninas">Orações Leoninas</BarDropdownItem>
+        </BarDropdownMenu>
+      </BarDropdown>
+    </BarItem>
+    <BarItem>
+      <BarDropdown>
+        <BarDropdownToggle>Ritual Romano</BarDropdownToggle>
+        <BarDropdownMenu>
+          <BarDropdownItem To="baptismo">Baptismo</BarDropdownItem>
+          <BarDropdownItem To="confirmacao">Confirmação</BarDropdownItem>
+          <BarDropdownItem To="matrimonio">Matrimónio</BarDropdownItem>
+          <BarDropdownItem To="extremauncao">Extrema-unção</BarDropdownItem>
+          <BarDropdownItem To="requiem">Requiem</BarDropdownItem>
+          <BarDropdownItem To="penitencia">Penitência</BarDropdownItem>
+        </BarDropdownMenu>
+      </BarDropdown>
+    </BarItem>
+    <BarItem>
+      <BarLink To="verdadesfe">Verdades de Fé</BarLink>
+    </BarItem>
+    <BarItem>
+      <BarLink To="catecismo">Catecismo</BarLink>
+    </BarItem>
+    <BarItem>
+    </BarItem>
+  </BarStart>
   <Toggle />
-  
-</BSNavbar>
+</BarMenu>
+</Bar>
 
-@code {
-  bool IsOpen { get; set; } = true;
-		void onclick(MouseEventArgs e)
-		{
-			IsOpen = !IsOpen;
-			StateHasChanged();
-			Console.WriteLine("Navbar Class->" + IsOpen.ToString());
-		}
-		void OpenChanged(bool e)
-		{
-			IsOpen = e;
-			InvokeAsync(StateHasChanged);
-			Console.WriteLine("OpenChanged->" + IsOpen.ToString());
-		}
-
-		bool IsOpen2 { get; set; } = true;
-		void onclick2(MouseEventArgs e)
-		{
-			IsOpen2 = !IsOpen2;
-			StateHasChanged();
-
-		}
+@code{
+  protected override void OnInitialized() {
+    State.OnChange += StateHasChanged;
+    navigation.LocationChanged += LocationChanged;
+  }
+  public void Dispose() {
+    State.OnChange -= StateHasChanged;
+    navigation.LocationChanged -= LocationChanged;
+  }
+  string location = "";
+  void LocationChanged(object sender, LocationChangedEventArgs e) {
+    location = e.Location;
+    StateHasChanged();
+  }
 }

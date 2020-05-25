@@ -8,42 +8,14 @@
   text-rendering: optimizeLegibility;
 }
 
-#snackbar {
-  left: 0%;
-  right: 0%;
-  top: 10%;
-  visibility: hidden;
-  position: fixed;
-  z-index: 1;
-  cursor: pointer;
-}
-
-#snackbar.show {
-  visibility: visible;
-  -webkit-animation: fadein 0.5s;
-  animation: fadein 0.5s;
-}
-
-@-webkit-keyframes fadein {
-  from {
-    top: 0;
-    opacity: 0;
-  }
-  to {
-    top: 10%;
-    opacity: 1;
-  }
-}
-
-@keyframes fadein {
-  from {
-    top: 0;
-    opacity: 0;
-  }
-  to {
-    top: 10%;
-    opacity: 1;
-  }
+.spinner-border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 25px;
+  width: 25px;
+  color: #c03939;
+  /* margin-top: 25px; */
 }
 
 footer {
@@ -51,10 +23,6 @@ footer {
   left: 0;
   right: 0;
   background-color: #2a3443;
-}
-
-.logo {
-  fill: white;
 }
 
 :root {
@@ -145,12 +113,6 @@ em {
   line-height: 80%;
 }
 
-body {
-  display: flex;
-  position: relative;
-  margin-top: 70px;
-}
-
 h1,
 h2,
 h3,
@@ -158,20 +120,6 @@ h4,
 h5,
 h6 {
   font-family: "Berkshire Swash", cursive;
-}
-
-.dropdown-menu a {
-  color: #df2321 !important;
-}
-
-.dropdown .dropdown-menu .dropdown-item:active,
-.dropdown .dropdown-menu .dropdown-item:hover {
-  background-color: #df2321 !important;
-  color: white !important;
-}
-.dropdown .dropdown-toggle,
-.dropdown .dropdown-toggle {
-  background-color: transparent !important;
 }
 
 /* NAVBAR */
@@ -216,58 +164,12 @@ nav .mynav li a {
   color: #ffffff;
 }
 
-/* nav .mynav li a:hover,
 nav .mynav li a:active,
 nav .mynav li a:focus {
   color: #aaa;
-} */
-
-/* COVER*/
-
-/* SIDE NAV TOC */
-
-#toc {
-  display: grid;
-  position: sticky;
-  top: 6.5em;
-  left: 0;
-  bottom: 0;
-  color: rgb(225, 225, 225);
-  font-size: 70%;
-  padding-left: 0;
-  max-width: 100%;
 }
+*/
 
-.toc-salterio,
-.toc-propriotempo,
-.toc-propriosantos {
-  height: 88vh;
-  width: 100%;
-  overflow: scroll;
-}
-
-nav[data-toggle="toc"] .nav > li > a {
-  display: block;
-  padding: 0;
-  font-size: 100%;
-  font-weight: 100;
-  color: #df2321;
-}
-
-nav[data-toggle="toc"] .nav-link.active,
-nav[data-toggle="toc"] .nav-link.active:focus,
-nav[data-toggle="toc"] .nav-link.active:hover,
-nav[data-toggle="toc"] .nav > li > a:focus,
-nav[data-toggle="toc"] .nav > li > a:hover {
-  color: #df2321;
-  border-left: 1px solid #df2321;
-  padding-left: 0;
-}
-
-/* hide nav that gives the sidebar info to sidebar names in salterio and rosario*/
-.info {
-  display: none;
-}
 
 /* CAROUSEL */
 

@@ -16,14 +16,14 @@ namespace blazor_tesourofieis {
 	}
 
 	public class Celebration {
-		[JsonPropertyName("colors")]
-		public List<string> Colors { get; set; }
+		// [JsonPropertyName("colors")]
+		// public List<string> Colors { get; set; }
 
-		[JsonPropertyName("id")]
-		public string Id { get; set; }
+		// [JsonPropertyName("id")]
+		// public string Id { get; set; }
 
-		[JsonPropertyName("rank")]
-		public long Rank { get; set; }
+		// [JsonPropertyName("rank")]
+		// public long Rank { get; set; }
 
 		[JsonPropertyName("title")]
 		public string Title { get; set; }

@@ -1,0 +1,34 @@
+@inject State State
+
+@if(State.OratioBody == null){
+    <Column ColumnSize="ColumnSize.Is12">
+        <span class="spinner-border text-center mt-3"></span>
+    </Column>
+}
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6">
+            <h2 class="text-center">@State.OratioLabel</h2>
+			@foreach(var item in State.OratioBody){
+    	        <p>@((MarkupString)item.FirstOrDefault())</p>
+			}
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6">
+            <h2 class="text-center">@State.OratioId</h2>
+			@foreach(var item in State.OratioBody){
+    	        <p>@((MarkupString)item.LastOrDefault())</p>
+			}
+        </Column>
+    </Row>
+
+@code{
+	protected override async Task OnInitializedAsync() {
+		await State.GetTodayComponents("oratio");
+		State.OnChange += StateHasChanged;
+	}
+	protected override void OnParametersSet() {
+		State.OnChange += StateHasChanged;
+	}
+	public void Dispose() {
+		State.OnChange -= StateHasChanged;
+	}
+}

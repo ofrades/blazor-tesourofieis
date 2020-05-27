@@ -52,7 +52,6 @@ namespace blazor_tesourofieis {
 			today = todayFromList;
 			await GetMass(today);
 			await GetTodayComponents();
-			_navigationManager.NavigateTo($"{_navigationManager.BaseUri}/missa#{today}");
 		}
 		public async Task GetTodayComponents(string from = "all") {
 			if (!Mass.Any()) {
@@ -259,7 +258,7 @@ namespace blazor_tesourofieis {
 
 		public async Task Focus() {
 			var uri = _navigationManager.ToAbsoluteUri(_navigationManager.Uri);
-			await _js.InvokeVoidAsync("blazorHelpers.scrollToFragment", uri.Fragment.Substring(1));
+			await _js.InvokeVoidAsync("blazorHelpers.scrollToFragment", today);
 			NotifyStateChanged();
 		}
 		private void NotifyStateChanged() => OnChange?.Invoke();

@@ -3,16 +3,22 @@
 
 <Row>
 	@if(State.SidebarIsOpen){
+	<div class="col-2">
     	<SideBar />
-	}
-
-	<Column ColumnSize="ColumnSize.Is10" Offset="Is2.WithOffset">
+	</div>
+	<div class="col-10">
 		<FetchMass />
-	</Column>
+	</div>
+	}
+	@if(!State.SidebarIsOpen){
+	<div class="col-12">
+		<FetchMass />
+	</div>
+	}
 </Row>
 
 @code{
-	protected override async Task OnInitializedAsync() {
+	protected override async Task OnInitializedAsync(){
 		await State.GetToday();
 		State.OnChange += StateHasChanged;
 	}

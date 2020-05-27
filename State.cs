@@ -36,6 +36,7 @@ namespace blazor_tesourofieis {
 		public string today = DateTime.Now.ToString("yyyy-MM-dd");
 		public Dictionary<string, Calendar> deserializer = new Dictionary<string, Calendar>();
 		public Calendar Calendar { get; set; } = new Calendar();
+		public Info Info { get; set; } = new Info();
 		public int year = DateTime.Now.Year;
 		public async Task GetCalendar() {
 			if (!deserializer.Any()) {
@@ -44,6 +45,7 @@ namespace blazor_tesourofieis {
 			NotifyStateChanged();
 		}
 		public async Task GetToday(string todayFromList = "") {
+			if (today == todayFromList) { }
 			if (todayFromList == "") {
 				todayFromList = today;
 			}
@@ -89,8 +91,8 @@ namespace blazor_tesourofieis {
 		}
 		public string Title { get; set; }
 		public string Description { get; set; }
-		public string AdditionalInfo { get; set; }
 		public string Color { get; set; }
+		public string AdditionalInfo { get; set; }
 		public List<Section> Sections = new List<Section>();
 		public List<List<string>> Body = new List<List<string>>();
 		public async Task GetMass(string today) {
@@ -113,7 +115,8 @@ namespace blazor_tesourofieis {
 					if (item.Info.AdditionalInfo.Any()) {
 						AdditionalInfo = item.Info.AdditionalInfo.FirstOrDefault();
 					}
-					Color = item.Info.Colors.FirstOrDefault();
+					Info = Mass.Select(c => c.Info).FirstOrDefault();
+					Color = Info.Colors.FirstOrDefault();
 					Sections = Mass.Select(c => c.Sections).FirstOrDefault();
 					Body = Sections.Select(c => c.Body).FirstOrDefault();
 				}

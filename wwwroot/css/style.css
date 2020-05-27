@@ -42,56 +42,31 @@ html {
   height: 200px;
   object-fit: cover;
 }
-
-.color-marker {
-  height: 10px;
-  width: 9px;
-  border-radius: 10% 10% 50% 50%;
-  display: inline-block;
-}
-
-.color-marker-r {
-  background-color: red;
-}
-
-.color-marker-g {
-  background-color: green;
-}
-
-.color-marker-w {
-  background-color: lightgray;
-}
-
-.color-marker-v {
-  background-color: violet;
-}
-
-.color-marker-b {
-  background-color: black;
-}
-
-.sidebar-color-marker {
-  border-left: 3px solid;
+.sidebar {
+  left: 0;
 }
 
 .sidebar-color-marker-r {
-  border-left-color: red;
+  background-color: red !important;
 }
 
 .sidebar-color-marker-g {
-  border-left-color: green;
+  background-color: green !important;
 }
 
 .sidebar-color-marker-w {
-  border-left-color: lightgray;
+  background-color: lightgrey !important;
+}
+.sidebar-color-marker-w li a {
+  color: black !important;
 }
 
 .sidebar-color-marker-v {
-  border-left-color: violet;
+  background-color: violet !important;
 }
 
 .sidebar-color-marker-b {
-  border-left-color: black;
+  background-color: black !important;
 }
 
 em {

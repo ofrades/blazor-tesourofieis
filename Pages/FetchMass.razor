@@ -1,6 +1,5 @@
 @inject State State
 
-
 	@if(State.Mass.Count == 0){
 		<Column>
 			<span class="spinner-border text-center mt-3"></span>
@@ -56,10 +55,9 @@
 		<Postcommunio />
 	}
 
-
 @code{
-	protected override async Task OnInitializedAsync() {
-		await State.GetToday();
+	protected override async Task OnInitializedAsync(){
+		await State.GetToday(); 
 		State.OnChange += StateHasChanged;
 	}
 	public void Dispose() {

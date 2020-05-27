@@ -208,8 +208,7 @@
   </div>
   
 @code{
-  protected override async Task OnInitializedAsync() {
-    await State.GetMass(State.today);
+  protected override void OnInitialized() {
     State.OnChange += StateHasChanged;
   }
   public void Dispose() {

@@ -31,14 +31,17 @@
 
 	@if(State.Calendar.Celebration.Any()){
 		@foreach (var item in State.Calendar.Celebration){
-			<div class="sidebar-color-marker-@State.deserializer[day].Celebration.Select(c => c.Colors.FirstOrDefault()).FirstOrDefault() @(State.today == day ? "active border" : "")">
+			<div class="mt-1 mb-1 sidebar-color-marker-@State.deserializer[day].Celebration.Select(c => c.Colors.FirstOrDefault()).FirstOrDefault() @(State.today == day ? "bg-secondary active" : "")">
 			<SidebarItem>
 				<NavLink id="@day" To="missa"
 						@onclick="(() => State.GetToday(day))">
-					<p class="text-light">@item.Title</p>
+					<h6 class="text-light">@item.Title</h6>
+					<small class="text-danger">@day</small>
 					@if (State.Calendar.Commemoration.Any()){
-						<small class="text-light">@day</small>
-						<small class="text-light">@State.deserializer[day].Commemoration.Select(c => c.Title).FirstOrDefault()</small>
+						<small class="text-danger">@State.deserializer[day].Commemoration.Select(c => c.Title).FirstOrDefault()</small>
+					}
+					@if (State.Calendar.Tempora.Any()){
+						<small class="text-danger">@State.deserializer[day].Tempora.Select(c => c.Title).FirstOrDefault()</small>
 					}
 				</NavLink>
 			</SidebarItem>
@@ -46,26 +49,26 @@
 		}
 	} else if (State.Calendar.Tempora.Any()){
 		@foreach (var item in State.Calendar.Tempora){
-			<div class="sidebar-color-marker-@State.deserializer[day].Commemoration.Select(c => c.Colors.FirstOrDefault()).FirstOrDefault() @(State.today == day ? "active border" : "")">
+			<div class="mt-1 mb-1 sidebar-color-marker-@State.deserializer[day].Commemoration.Select(c => c.Colors.FirstOrDefault()).FirstOrDefault() @(State.today == day ? "bg-secondary active" : "")">
 			<SidebarItem>
 				<NavLink id="@day" To="missa"
 						@onclick="(() => State.GetToday(day))">
-					<p class="text-light">@item.Title</p>
+					<h6 class="text-light">@item.Title</h6>
+					<small class="text-danger">@day</small>
 					@if (State.Calendar.Commemoration.Any()){
-						<small class="text-light">@day</small>
-						<small class="text-light">@State.deserializer[day].Commemoration.Select(c => c.Title).FirstOrDefault()</small>
+						<small class="text-danger">@State.deserializer[day].Commemoration.Select(c => c.Title).FirstOrDefault()</small>
 					}
 				</NavLink>
 			</SidebarItem>
 			</div>
 		}
 	} else {
-		<div class="sidebar-color-marker-@State.deserializer[day].Commemoration.Select(c => c.Colors.FirstOrDefault()).FirstOrDefault() @(State.today == day ? "active border" : "")">
+		<div class="mt-1 mb-1 sidebar-color-marker-@State.deserializer[day].Commemoration.Select(c => c.Colors.FirstOrDefault()).FirstOrDefault() @(State.today == day ? "bg-secondary active" : "")">
 		<SidebarItem>
 			<NavLink id="@day" To="missa"
 					@onclick="(() => State.GetToday(day))">
-				<p class="text-light">Feria</p>
-				<small class="text-light">@day</small>
+				<h6 class="text-light">Feria</h6>
+				<small class="text-danger">@day</small>
 			</NavLink>
 		</SidebarItem>
 		</div>

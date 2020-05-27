@@ -46,27 +46,35 @@ html {
   left: 0;
 }
 
+.sidebar-color-marker- {
+  border-right: 5px solid lightgrey !important;
+  border-bottom: 1px dashed #aaa !important;
+  cursor: pointer !important;
+}
 .sidebar-color-marker-r {
-  background-color: red !important;
+  border-right: 5px solid darkred !important;
+  border-bottom: 1px dashed #aaa !important;
+  cursor: pointer !important;
 }
-
 .sidebar-color-marker-g {
-  background-color: green !important;
+  border-right: 5px solid darkgreen !important;
+  border-bottom: 1px dashed #aaa !important;
+  cursor: pointer !important;
 }
-
 .sidebar-color-marker-w {
-  background-color: lightgrey !important;
+  border-right: 5px solid lightgrey !important;
+  border-bottom: 1px dashed #aaa !important;
+  cursor: pointer !important;
 }
-.sidebar-color-marker-w li a {
-  color: black !important;
-}
-
 .sidebar-color-marker-v {
-  background-color: violet !important;
+  border-right: 5px solid darkviolet !important;
+  border-bottom: 1px dashed #aaa !important;
+  cursor: pointer !important;
 }
-
 .sidebar-color-marker-b {
-  background-color: black !important;
+  border-right: 5px solid black !important;
+  border-bottom: 1px dashed #aaa !important;
+  cursor: pointer !important;
 }
 
 em {

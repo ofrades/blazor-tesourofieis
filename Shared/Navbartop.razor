@@ -3,7 +3,7 @@
 
 <Bar Breakpoint="Breakpoint.Desktop" Background="Background.Danger">
 
-@if(location.Contains("/missa")){
+@if(location.Contains("missa")){
   <BarBrand>
     <Button @onclick="(() => State.ToggleSidebar())">
       @(State.SidebarIsOpen ? "<" : ">")
@@ -25,7 +25,7 @@
 <BarMenu>
   <BarStart class="mx-auto">
     <BarItem>
-      <BarLink To="/missa">Santa Missa Diária</BarLink>
+      <BarLink To="missa">Santa Missa Diária</BarLink>
     </BarItem>
     <BarItem>
       <BarDropdown>
@@ -46,7 +46,7 @@
       <BarDropdown>
         <BarDropdownToggle>Missal Romano</BarDropdownToggle>
         <BarDropdownMenu>
-          <BarDropdownItem To="/missa">Santa Missa Diária</BarDropdownItem>
+          <BarDropdownItem To="missa">Santa Missa Diária</BarDropdownItem>
           <BarDropdownItem To="ordinariomissa">Ordo Missæ</BarDropdownItem>
           <BarDropdownItem To="oracaoantescomunhao">Oração Antes da Comunhão</BarDropdownItem>
           <BarDropdownItem To="oracaodepoiscomunhao">Oração Depois da Comunhão</BarDropdownItem>

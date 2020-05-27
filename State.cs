@@ -52,7 +52,7 @@ namespace blazor_tesourofieis {
 			today = todayFromList;
 			await GetMass(today);
 			await GetTodayComponents();
-			_navigationManager.NavigateTo($"/missa#{today}");
+			_navigationManager.NavigateTo($"{_navigationManager.BaseUri}/missa#{today}");
 		}
 		public async Task GetTodayComponents(string from = "all") {
 			if (!Mass.Any()) {

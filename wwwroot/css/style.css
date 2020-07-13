@@ -153,3 +153,9 @@ nav .mynav li a:focus {
 .carousel-inner .item {
   transition: all 0.5s ease !important;
 }
+
+@media only screen and (max-width: 768px) {
+  * {
+    font-size: 110%;
+  }
+}

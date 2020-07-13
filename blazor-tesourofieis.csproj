@@ -13,7 +13,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="3.2.0" PrivateAssets="all" />
     <PackageReference Include="System.Net.Http.Json" Version="3.2.0" />
     <PackageReference Include="BlazorStyled" Version="3.0.0-alpha-05" />
-    <PackageReference Include="BlazorPro.BlazorSize" Version="2.0.2" />
+    <PackageReference Include="BlazorPro.BlazorSize" Version="2.*" />
   </ItemGroup>
 
   <ItemGroup>

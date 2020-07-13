@@ -1,8 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @inject IStyled Styled
-@inject ResizeListener listener
-@implements IDisposable
 @inject State State
+@using BlazorPro.BlazorSize
 
 <Styled>
     body {
@@ -19,44 +18,30 @@
     }
 </Styled>
 
-@if (IsSmallMedia) {
-    <Navbarbottom />
-} else {
-    <Navbartop />
-}
+<MediaQueryList>
+  <MediaQuery Media="@Breakpoints.MediumDown">
+    <Matched>
+        <Navbarbottom />
+    </Matched>
+    <Unmatched>
+        <Navbartop />
+    </Unmatched>
+  </MediaQuery>
+</MediaQueryList>
 
-<div class="main">
-    <div class="content">
-        @Body
-    </div>
-</div>
+  <div class="main">
+      <div class="content">
+          @Body
+      </div>
+  </div>
 
-<Footer />
+  <Footer />
 
 @code{
-	BrowserWindowSize browser = new BrowserWindowSize();
-	bool IsSmallMedia = false;
 	protected override async Task OnInitializedAsync() {
 		await State.GetCalendar();
 		Styled.SetThemeValue("colors.background-color", "#eee");
 		Styled.SetThemeValue("colors.text-color", "#26313c");
 		State.OnChange += StateHasChanged;
-	}
-	protected override void OnAfterRender(bool firstRender) {
-		if (firstRender) {
-			listener.OnResized += WindowResized;
-		}
-	}
-
-	void IDisposable.Dispose() {
-		listener.OnResized -= WindowResized;
-	}
-
-	async void WindowResized(object _, BrowserWindowSize window) {
-		browser = window;
-
-		IsSmallMedia = await listener.MatchMedia(Breakpoints.SmallDown);
-
-		StateHasChanged();
 	}
 }
